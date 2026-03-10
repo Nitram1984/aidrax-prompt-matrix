@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aidrax-prompt-matrix"
+dynamic = ["version"]
+description = "AIDRAX Prompt Matrix CLI and GUI"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "AIDRAX" }
+]
+dependencies = [
+  "openai>=1.0.0",
+  "requests>=2.28.0",
+  "rich>=13.0.0",
+]
+
+[project.scripts]
+prompt-manager = "main:main"
+manus-web = "prompt_manager_launchers:manus_web_main"
+
+[project.gui-scripts]
+prompt-manager-gui = "gui:main"
+
+[tool.setuptools]
+py-modules = [
+  "ai",
+  "db",
+  "gui",
+  "main",
+  "prompt_manager_launchers",
+  "prompt_manager_version",
+]
+
+[tool.setuptools.data-files]
+"share/aidrax-prompt-matrix/assets" = [
+  "assets/aidrax-icon-neon-cyberpunk.png",
+  "assets/aidrax-icon-neon-cyberpunk.ico",
+  "assets/aidrax-icon-neon-cyberpunk.svg",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "prompt_manager_version.__version__" }

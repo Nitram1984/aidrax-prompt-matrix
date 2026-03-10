@@ -1,0 +1,97 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgPlate" x1="180" y1="140" x2="836" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E1330"/>
+      <stop offset="0.52" stop-color="#090B1D"/>
+      <stop offset="1" stop-color="#03040C"/>
+    </linearGradient>
+    <linearGradient id="plateStroke" x1="232" y1="210" x2="792" y2="826" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4CF6FF"/>
+      <stop offset="0.45" stop-color="#5D8CFF"/>
+      <stop offset="1" stop-color="#FF33E8"/>
+    </linearGradient>
+    <linearGradient id="coreA" x1="358" y1="198" x2="668" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#56FBFF"/>
+      <stop offset="0.18" stop-color="#B5FFFF"/>
+      <stop offset="0.47" stop-color="#59C7FF"/>
+      <stop offset="0.74" stop-color="#975CFF"/>
+      <stop offset="1" stop-color="#FF2FE6"/>
+    </linearGradient>
+    <linearGradient id="edgeA" x1="336" y1="292" x2="740" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E7FFFF"/>
+      <stop offset="0.42" stop-color="#6DF5FF"/>
+      <stop offset="1" stop-color="#FF77F1"/>
+    </linearGradient>
+    <linearGradient id="innerBar" x1="414" y1="528" x2="630" y2="528" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2AF8FF"/>
+      <stop offset="1" stop-color="#FF37EA"/>
+    </linearGradient>
+    <radialGradient id="glowCore" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(512 420) rotate(90) scale(380 360)">
+      <stop offset="0" stop-color="#59F6FF" stop-opacity="0.46"/>
+      <stop offset="0.46" stop-color="#7E90FF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#FF2DE7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="magentaAura" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(666 748) rotate(90) scale(196 190)">
+      <stop offset="0" stop-color="#FF33E8" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#FF33E8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyanAura" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(378 312) rotate(90) scale(182 192)">
+      <stop offset="0" stop-color="#39F6FF" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#39F6FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="120" y="120" width="784" height="784" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="38"/>
+    </filter>
+    <filter id="plateShadow" x="116" y="116" width="792" height="792" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="32" stdDeviation="24" flood-color="#000000" flood-opacity="0.58"/>
+    </filter>
+    <filter id="aGlow" x="234" y="112" width="556" height="764" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#48F7FF" flood-opacity="0.55"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="22" flood-color="#FF2FE6" flood-opacity="0.34"/>
+    </filter>
+    <filter id="innerGlow" x="290" y="170" width="444" height="672" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <clipPath id="plateClip">
+      <path d="M278 132H746L892 278V746L746 892H278L132 746V278L278 132Z"/>
+    </clipPath>
+  </defs>
+
+  <g filter="url(#softGlow)">
+    <circle cx="512" cy="512" r="284" fill="url(#glowCore)"/>
+    <circle cx="378" cy="312" r="128" fill="url(#cyanAura)"/>
+    <circle cx="666" cy="748" r="136" fill="url(#magentaAura)"/>
+  </g>
+
+  <g filter="url(#plateShadow)">
+    <path d="M278 132H746L892 278V746L746 892H278L132 746V278L278 132Z" fill="url(#bgPlate)"/>
+    <path d="M278 132H746L892 278V746L746 892H278L132 746V278L278 132Z" stroke="url(#plateStroke)" stroke-width="14"/>
+  </g>
+
+  <g clip-path="url(#plateClip)">
+    <path d="M214 236L810 832" stroke="#1BE8FF" stroke-opacity="0.09" stroke-width="5"/>
+    <path d="M174 316L730 872" stroke="#FF37EA" stroke-opacity="0.08" stroke-width="4"/>
+    <path d="M300 156L870 726" stroke="#8A70FF" stroke-opacity="0.08" stroke-width="4"/>
+    <path d="M224 694H800" stroke="#2CF6FF" stroke-opacity="0.08" stroke-width="3"/>
+    <path d="M224 740H800" stroke="#FF37EA" stroke-opacity="0.07" stroke-width="3"/>
+    <path d="M248 278H776" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="2"/>
+    <ellipse cx="512" cy="860" rx="214" ry="28" fill="#0AF3FF" fill-opacity="0.08"/>
+  </g>
+
+  <g filter="url(#aGlow)">
+    <path d="M508 188L724 780H612L550 612H474L412 780H300L508 188Z" fill="url(#coreA)"/>
+    <path d="M510 250L660 674H578L544 576H482L448 674H364L510 250Z" fill="#091021" fill-opacity="0.62"/>
+    <path d="M508 188L724 780H612L550 612H474L412 780H300L508 188Z" stroke="url(#edgeA)" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M414 504H630L596 592H448L414 504Z" fill="url(#innerBar)"/>
+    <path d="M414 504H630L596 592H448L414 504Z" stroke="#D8FFFF" stroke-opacity="0.42" stroke-width="4"/>
+  </g>
+
+  <g filter="url(#innerGlow)" opacity="0.7">
+    <path d="M506 238L632 600H570L548 540H476L454 600H394L506 238Z" fill="#D9FFFF" fill-opacity="0.18"/>
+  </g>
+
+  <path d="M286 172H738L850 284V738L738 850H286L174 738V284L286 172Z" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="4"/>
+  <path d="M264 192H760L830 262V760L760 830H264L194 760V262L264 192Z" stroke="#39F6FF" stroke-opacity="0.2" stroke-width="2"/>
+  <path d="M786 250L850 314" stroke="#39F6FF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M222 710L274 762" stroke="#FF37EA" stroke-width="8" stroke-linecap="round"/>
+</svg>

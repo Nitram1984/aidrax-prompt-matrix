@@ -1,0 +1,40 @@
+name: Windows Registry Smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  smoke:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Build package artifacts
+        shell: bash
+        run: |
+          python -m pip install --upgrade build
+          python -m build --outdir dist/python-package
+          python scripts/build_simple_index.py --dist-dir dist/python-package --output-dir dist/pages
+      - name: Start local registry
+        shell: pwsh
+        run: |
+          $process = Start-Process python -ArgumentList "-m", "http.server", "8000", "--directory", "dist/pages" -PassThru
+          "PID=$($process.Id)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Start-Sleep -Seconds 2
+      - name: Install from registry on Windows
+        shell: pwsh
+        run: |
+          .\scripts\install_prompt_matrix_windows.ps1 -IndexUrl "http://127.0.0.1:8000/simple"
+          & "$env:USERPROFILE\bin\prompt-manager.cmd" version
+      - name: Stop local registry
+        if: always()
+        shell: pwsh
+        run: |
+          if ($env:PID) {
+            Stop-Process -Id $env:PID -Force
+          }
