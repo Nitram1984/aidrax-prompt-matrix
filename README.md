@@ -110,7 +110,7 @@ prompt-manager
 
 Die gestarteten Wrapper `prompt-manager` und `prompt-manager-gui` pruefen beim Start per `pip index versions`, ob fuer das Paket `aidrax-prompt-matrix` eine neuere Version in der Registry verfuegbar ist. Falls ja, fuehren sie automatisch `pip install --upgrade` in der lokalen venv aus.
 
-Standardmaessig wird die Default-Registry von `pip` verwendet. Fuer eine private Registry oder einen anderen Paketnamen kannst du diese Variablen setzen:
+Standardmaessig wird die GitHub-Pages-Registry fuer `aidrax-prompt-matrix` verwendet. Python-Abhaengigkeiten laufen ueber einen PyPI-Fallback. Fuer eine private Registry oder einen anderen Paketnamen kannst du diese Variablen setzen:
 
 ```bash
 export PROMPT_MATRIX_PACKAGE_NAME="aidrax-prompt-matrix"
@@ -157,6 +157,20 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install_prompt_matrix_windows
 ```
 
 Der Installer legt unter `%USERPROFILE%\bin` Wrapper fuer `prompt-manager.cmd`, `prompt-manager-gui.cmd` und `manus-web.cmd` an. Diese Wrapper pruefen beim Start ebenfalls auf neue Registry-Versionen und aktualisieren sich bei Bedarf automatisch.
+
+### Update-Prompt in Prompt Matrix
+
+Fuer Release-, Registry- und Windows-Sync-Aufgaben gibt es einen seedbaren Arbeits-Prompt:
+
+```bash
+python3 scripts/seed_registry_update_prompt.py --update-existing
+```
+
+Titel in Prompt Matrix:
+
+```text
+Maschinen-Orchestrator: Registry- und Windows-Update
+```
 
 Fuer automatische Orchestrierung werden ein Primaer-Provider und Manus benoetigt:
 

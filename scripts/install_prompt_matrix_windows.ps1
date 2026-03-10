@@ -1,6 +1,6 @@
 param(
     [string]$IndexUrl = $(if ($env:PROMPT_MATRIX_PIP_INDEX_URL) { $env:PROMPT_MATRIX_PIP_INDEX_URL } else { "https://nitram1984.github.io/aidrax-prompt-matrix/simple" }),
-    [string]$ExtraIndexUrl = $env:PROMPT_MATRIX_PIP_EXTRA_INDEX_URL,
+    [string]$ExtraIndexUrl = $(if ($env:PROMPT_MATRIX_PIP_EXTRA_INDEX_URL) { $env:PROMPT_MATRIX_PIP_EXTRA_INDEX_URL } else { "https://pypi.org/simple" }),
     [string]$PackageName = $(if ($env:PROMPT_MATRIX_PACKAGE_NAME) { $env:PROMPT_MATRIX_PACKAGE_NAME } else { "aidrax-prompt-matrix" }),
     [string]$InstallRoot = "$env:LOCALAPPDATA\PromptMatrix",
     [string]$BinRoot = "$env:USERPROFILE\bin"
@@ -39,6 +39,18 @@ function Invoke-Python {
     & $PythonCommand[0] $PythonCommand[1..($PythonCommand.Length - 1)] @Arguments
 }
 
+function Invoke-Checked {
+    param(
+        [string]$Executable,
+        [string[]]$Arguments
+    )
+
+    & $Executable @Arguments
+    if ($LASTEXITCODE -ne 0) {
+        throw "Befehl fehlgeschlagen: $Executable $($Arguments -join ' ')"
+    }
+}
+
 if (-not $IndexUrl) {
     throw "IndexUrl fehlt. Setze PROMPT_MATRIX_PIP_INDEX_URL oder uebergib -IndexUrl."
 }
@@ -60,8 +72,8 @@ if (-not (Test-Path $venvPython)) {
     Invoke-Python -PythonCommand $pythonCommand -Arguments @("-m", "venv", (Join-Path $InstallRoot ".venv"))
 }
 
-& $venvPython -m pip install --upgrade pip | Out-Null
-& $venvPython -m pip install @pipArgs $PackageName
+Invoke-Checked -Executable $venvPython -Arguments @("-m", "pip", "install", "--upgrade", "pip")
+Invoke-Checked -Executable $venvPython -Arguments (@("-m", "pip", "install") + $pipArgs + @($PackageName))
 
 $launcherContent = @"
 param(

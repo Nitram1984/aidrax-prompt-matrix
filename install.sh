@@ -12,7 +12,7 @@ VENV_DIR="$INSTALL_DIR/.venv"
 ASSETS_DIR="$INSTALL_DIR/assets"
 PACKAGE_NAME="${PROMPT_MATRIX_PACKAGE_NAME:-aidrax-prompt-matrix}"
 PIP_INDEX_URL="${PROMPT_MATRIX_PIP_INDEX_URL:-https://nitram1984.github.io/aidrax-prompt-matrix/simple}"
-PIP_EXTRA_INDEX_URL="${PROMPT_MATRIX_PIP_EXTRA_INDEX_URL:-}"
+PIP_EXTRA_INDEX_URL="${PROMPT_MATRIX_PIP_EXTRA_INDEX_URL:-https://pypi.org/simple}"
 
 build_pip_index_args() {
     PIP_INDEX_ARGS=()
